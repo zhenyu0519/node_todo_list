@@ -46,29 +46,32 @@ app.get('/api/todos', function(req, res){
 			res.send(err);
 		}
 		//return all todos in JSON format
-		res.json(todo);
+		res.json(todos);
 	});
 });
 //create new todos
-app.post('/api/todos',function(req,res){
-	todo.create({
-		text: req.body.text,
-		done:false
-	}, function(err,todo){
-		if(err){
-			res.send(err);
-		}
-		todo.find(function(){
-			if(err){
-				res.send(err);
-			}
-			res.json(todos);
-		});
-	});
-});
+app.post('/api/todos', function(req, res) {
+
+        // create a todo, information comes from AJAX request from Angular
+        todo.create({
+            text : req.body.text,
+            done : false
+        }, function(err, todo) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+            todo.find(function(err, todos) {
+                if (err)
+                    res.send(err)
+                res.json(todos);
+            });
+        });
+
+    });
 //delete todos
 app.delete('/api/todos',function(req,res){
-	tode.remove({
+	todo.remove({
 		_id: req.params.todo_id
 	},function(err, todo){
 		if(err){
@@ -80,7 +83,7 @@ app.delete('/api/todos',function(req,res){
 
 //load the page view
 app.get('*',function(req,res){
-	res.sendfile('./public/index.html');
+	res.sendFile(__dirname + '/public/index.html');
 });
 
 //listen the port

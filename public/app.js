@@ -4,7 +4,7 @@ var todoApp = angular.module('todoApp',[]);
 todoApp.controller('myCtrl', function($scope, $http){
 	$scope.formData = {};
 	//when lanuch on the pages, get all the todos and list them all
-	$http.get('/api/todos').suscess(function(data){
+	$http.get('/api/todos').success(function(data){
 		$scope.todos = data;
 		console.log(data);
 	}).error(function(data){
