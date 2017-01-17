@@ -50,34 +50,38 @@ app.get('/api/todos', function(req, res){
 	});
 });
 //create new todos
-app.post('/api/todos', function(req, res) {
-
-        // create a todo, information comes from AJAX request from Angular
-        todo.create({
-            text : req.body.text,
-            done : false
-        }, function(err, todo) {
-            if (err)
-                res.send(err);
-
-            // get and return all the todos after you create another
-            todo.find(function(err, todos) {
-                if (err)
-                    res.send(err)
-                res.json(todos);
-            });
+app.post('/api/todos', function(req, res){
+	//create a todo, information comes from AJAX request from Angular
+    todo.create({
+        text : req.body.text,
+        done : false
+    }, function(err, todos) {
+        if (err){
+        	res.send(err);
+        }
+        // get and return all the todos after you create another
+        todo.find(function(err,todos){
+            if (err){
+                res.send(err)
+            }
+            res.json(todos);
         });
-
-    });
+    });   
+});
 //delete todos
 app.delete('/api/todos',function(req,res){
 	todo.remove({
 		_id: req.params.todo_id
-	},function(err, todo){
+	},function(err, todos){
 		if(err){
 			res.send(err);
 		}
-		res.json(todos);
+		todo.find(function(err,todos){
+			if(err){
+				res.send(err);
+			}
+			res.json(todos);
+		});
 	});
 });
 
