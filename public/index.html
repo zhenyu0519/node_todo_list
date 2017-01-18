@@ -8,7 +8,7 @@
     <!-- load fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <!-- load css file -->
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <!-- load angularjs -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- load jQuery -->
@@ -21,18 +21,22 @@
 	<div class = "container">
 		<!-- HEADER AND TODO COUNT -->
         <div class="jumbotron text-center">
-            <h1>WELCOME M.E.A.N TO DO WEB<span class="label label-info">{{ todos.length }}</span></h1>
+            <h1>Hi, welcome</h1>
+            <h2>Today you have <span class="label label-success">{{ todos.length }}</span> things to do</h2>
         </div>
 
         <!-- TODO LIST -->
         <div id="todo-list" class="row">
-            <div class="col-sm-4 col-sm-offset-4">
+            <div class="col-lg-12">
 
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
                 <div class="checkbox" ng-repeat="todo in todos">
-                    <label>
-                        <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-                    </label>
+                	<a href="#" class="list-group-item list-group-item-info">
+                		<label>
+                    		<input type="checkbox" ng-click="deleteTodo(todo._id)">
+                        	{{ $index +1 }}.{{ todo.text }}
+                    	</label>
+                    </a>   
                 </div>
 
             </div>
@@ -40,19 +44,26 @@
 
         <!-- FORM TO CREATE TODOS -->
         <div id="todo-form" class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
+            <div class="col-lg-12">
                 <form>
                     <div class="form-group">
 
                         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+                        <input type="text" class="form-control input-lg text-center" ng-model="formData.text">
                     </div>
 
                     <!-- createToDo() WILL CREATE NEW TODOS -->
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+                    <div class="btn-group btn-group-justified">
+                    	<a href="#" type="submit" class="btn btn-info btn-lg " ng-click="createTodo()">Add</a>
+                    	<a href="#" type="submit" class="btn btn-warning btn-lg " ng-click="createTodo()">Delete</a>
+                    </div>
                 </form>
             </div>
         </div>
+        <!-- FOOTER -->
+        <footer class="container-fluid text-center">
+  			<p>Created By Jeffery</a></p> 
+		</footer>
 	</div>
 </body>
 </html>

@@ -18,7 +18,7 @@ todoApp.controller('myCtrl', function($scope, $http){
 			$scope.todos = data;
 			console.log(data);
 		}).error(function(data){
-			console.log('Error ' + data);
+			console.log('Error: ' + data);
 		});
 	};
 
@@ -28,7 +28,7 @@ todoApp.controller('myCtrl', function($scope, $http){
 			$scope.todos = data;
 			console.log(data);
 		}).error(function(data){
-			console.log('Error ' + data);
+			console.log('Error: ' + data);
 		});
 	};
 
