@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <!-- load css file -->
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- load font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- load angularjs -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- load jQuery -->
@@ -21,25 +23,8 @@
 	<div class = "container">
 		<!-- HEADER AND TODO COUNT -->
         <div class="jumbotron text-center">
-            <h1>Hi, welcome</h1>
-            <h2>Today you have <span class="label label-success">{{ todos.length }}</span> things to do</h2>
-        </div>
-
-        <!-- TODO LIST -->
-        <div id="todo-list" class="row">
-            <div class="col-lg-12">
-
-                <!-- LOOP OVER THE TODOS IN $scope.todos -->
-                <div class="checkbox" ng-repeat="todo in todos">
-                	<a href="#" class="list-group-item list-group-item-info">
-                		<label>
-                    		<input type="checkbox" ng-click="deleteTodo(todo._id)">
-                        	{{ $index +1 }}.{{ todo.text }}
-                    	</label>
-                    </a>   
-                </div>
-
-            </div>
+            <h1><span style="color:red">Hi</span>, welcome</h1>
+            <h2>Today you have <span class="label label-info">{{ todos.length }}</span> things to do</h2>
         </div>
 
         <!-- FORM TO CREATE TODOS -->
@@ -49,20 +34,38 @@
                     <div class="form-group">
 
                         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" ng-model="formData.text">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Please add your events here" ng-model="formData.text">
                     </div>
 
                     <!-- createToDo() WILL CREATE NEW TODOS -->
                     <div class="btn-group btn-group-justified">
-                    	<a href="#" type="submit" class="btn btn-info btn-lg " ng-click="createTodo()">Add</a>
-                    	<a href="#" type="submit" class="btn btn-warning btn-lg " ng-click="createTodo()">Delete</a>
+                    	<a href="#" type="submit" class="btn btn-success btn-lg " ng-click="createTodo()">Add</a>
                     </div>
                 </form>
             </div>
         </div>
+
+        <hr>
+
+        <!-- TODO LIST -->
+        <div id="todo-list" class="row">
+            <div class="col-lg-12">
+
+                <!-- LOOP OVER THE TODOS IN $scope.todos -->
+                <div ng-repeat="todo in todos">
+            		<label>
+                		<a href="#" type="submit" class="btn btn-warning btn-sm" ng-click="deleteTodo(todo._id)"><span class="fa fa-minus-circle" aria-hidden="true"></span>  done</a>
+                    	{{ todo.text }}
+                	</label>
+                	<hr>
+                </div>
+
+            </div>
+        </div>
+
         <!-- FOOTER -->
         <footer class="container-fluid text-center">
-  			<p>Created By Jeffery</a></p> 
+  			<p>Created By <a href="www.jeffery.com">Jeffery</a><span class="fa fa-registered" aria-hidden="true"></span></p> 
 		</footer>
 	</div>
 </body>

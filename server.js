@@ -69,7 +69,7 @@ app.post('/api/todos', function(req, res){
     });   
 });
 //delete todos
-app.delete('/api/todos',function(req,res){
+app.delete('/api/todos:todo_id',function(req,res){
 	todo.remove({
 		_id: req.params.todo_id
 	},function(err, todos){
